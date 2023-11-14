@@ -18,7 +18,9 @@ import Time "mo:base/Time";
 import Text "mo:base/Text";
 import Result "mo:base/Result";
 import Cycles = "mo:base/ExperimentalCycles";
+import Cycless = "mo:base/ExperimentalCycles";
 import Token "./ic-token/motoko/src/token";
+import Tokensd "./ic-token/motoko/src/token";
 
 shared(msg) actor class TokenRegistry(owner: Principal, _feeTokenId: Principal, _fee: Nat) = this {
     type TxReceipt = Result.Result<Nat, {
