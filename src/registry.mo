@@ -397,6 +397,25 @@ shared(msg) actor class TokenRegistry(owner: Principal, _feeTokenId: Principal, 
         };
         (tokenList, temp.size())
     };
+public query func getTokensByName(t: Text, start: Nat, num: Nat) : async ([TokenInfo], Nat) {
+        var temp: [TokenInfo] = [];
+        let p : Text.Pattern = #text t;
+        for ((id, token) in tokens.entries()) {
+            if (Text.contains(token.name, p) or Text.contains(token.symbol, p)) {
+                temp := Array.append(temp, [token]);
+            };
+        };
+        var tokenList: [TokenInfo] = [];
+        let limit: Nat = if(start + num > temp.size()) {
+            temp.size() - start
+        } else {
+            num
+        };
+        for (i in Iter.range(0, limit-1)) {
+            tokenList := Array.append<TokenInfo>(tokenList, [temp[start+i]])
+        };
+        (tokenList, temp.size())
+    };
 
     public query func getUserTokenList(user: Principal): async [TokenInfo] {
         var tokenList: [TokenInfo] = [];
