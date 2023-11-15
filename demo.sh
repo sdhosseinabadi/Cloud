@@ -17,6 +17,10 @@ ALICE_PUBLIC_KEY="principal \"$( \
     HOME=$ALICE_HOME dfx identity get-principal
 )\""
 
+ALICE_PUBLIC_KEY="principal \"$( \
+    HOME=$ALICE_HOME dfx identity get-principal
+)\""
+
 dfx start --background
 dfx canister create registry
 dfx build registry
